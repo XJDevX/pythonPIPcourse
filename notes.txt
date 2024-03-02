@@ -1,0 +1,18 @@
+En este curso vemos como usar Python con GitHub, con esto podemos
+gestionar mejor el tiempo al momento de trabajar en grupo.
+
+
+Antes de iniciar con el curso debemos ejecutar unos comandos para
+asi tener todas las librerias y paquetes que usaremos en el curso:
+    -> sudo apt install -y build-essential libssl-dev libffi-dev python3-dev
+
+
+Si queremos poner un buen readme.md podemos usar el generador
+de codigos '.md' que se llama ("pandao")
+
+
+Algo muy importante de este curso es que debemos aprender a usar
+PIP (Python Package Index), este sirve para instalar paquetes de
+codigos que podemos usar en nuestros proyectos:
+    -Debemos poner en la terminal -> (pip install 'nombre del paquete')
+        -> pip install matplotlib
