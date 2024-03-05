@@ -138,3 +138,36 @@ rueda de nuevo", podemos pasar de esto:
         countries = df['Country'].values
         percentages = df['World Population Percentage'].values
         charts.generatePieChart(countries, percentages)
+
+
+<<---Construir un web server--->>
+Para hacer un servidor web propio debemos usar el modulo de FastAPI, para instalar
+este modulo debemos poner (Dentro de un venv):
+    -> pip3 install fastapi
+    -> pip3 install "uvicorn[standard]"
+
+Luego de esto debemos implementarlo a nuestro codigo, para esto debemos hacer:
+
+    from fastapi import FastAPI
+
+    app = FastAPI()
+
+    @app.get("/")
+    def getList():
+        return [1,2,3,4,5,6,7,8,9,10]
+
+
+Para recibir el codigo en forma de HTML debemos poner:
+
+    import store
+    from fastapi import FastAPI
+    from fastapi.responses import HTMLResponse
+
+    app = FastAPI()
+
+    @app.get("/contacts", response_class = HTMLResponse)
+    def get_list():
+        return """
+            <h1>Hola soy una pagina</h1>
+            <p>Hola soy un parrafo</p>
+        """
