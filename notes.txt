@@ -171,3 +171,15 @@ Para recibir el codigo en forma de HTML debemos poner:
             <h1>Hola soy una pagina</h1>
             <p>Hola soy un parrafo</p>
         """
+
+
+<<---Utilizando Docker para aislar versiones de Python--->>
+Asi como lo mencione, Docker es similiar a los Venv pero con la diferencia de que Docker aislara
+a las versiones de Python por proyecto en vez de sus modulos. Para instalarlo debemos hacer:
+
+    -Descargar el instalador desde https://docs.docker.com/desktop/install/windows-install/
+    -Al instalarlo debemos asegurarnos que la opcion “Use the WSL 2 based engine” está activada
+
+    -Luego en la sección “Resources > WSL Integration”, asegurarate que la opcion 
+        “Enable integration with my default WSL distro”, este habilitada:
+
