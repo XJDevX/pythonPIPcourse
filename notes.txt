@@ -16,3 +16,31 @@ PIP (Python Package Index), este sirve para instalar paquetes de
 codigos que podemos usar en nuestros proyectos:
     -Debemos poner en la terminal -> (pip install 'nombre del paquete')
         -> pip install matplotlib
+
+
+Los ambientes virtuales sirver para cuando necesitamos instalar versiones diferentes en proyectos
+y no queremos hacer interferencia con los modulos locales del programa o usuario de WSL
+Para crear un ambiente virtual debemos poner el siguiente comando:
+    -Debemos poner en la terminal -> python3 -m venv ("Nombre del entorno virtual")
+        -> python3 -m venv env1
+
+Los entornos virtuales no solo se deben crear sino que tambien se deben activar
+y desactivar manualmente poniendo lo siguiente:
+    -Debemos poner en la terminal -> source ("Nombre del entorno virtual)/bin/activate
+        -> source env1/bin/activate
+
+    -Debemos poner en la terminal para desactivar lo siguiente:
+        -> deactivate
+
+
+Para evitar instalar un monton de modulos y dependencias cuando entramos a un nuevo entorno
+virtual se creo el "Requirements.txt" en este se guardan todas las dependencias que el
+autor del proyecto haya usado para que todo fluya, para nosotros crear esto debemos:
+
+    -Debemos instalar todas las dependencias que necesitemos para el proyecto
+    -Luego debemos poner el siguiente comando -> pip3 freeze > requierments.txt
+
+    -Y para instalar todos los modulos de "Requirements.txt" debemos poner:
+        pip3 install -r requierments.txt
+
+    -Cabe aclarar que antes de hacer lo anterior debemos activar el entorno virtual
