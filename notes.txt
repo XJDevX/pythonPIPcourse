@@ -183,3 +183,68 @@ a las versiones de Python por proyecto en vez de sus modulos. Para instalarlo de
     -Luego en la sección “Resources > WSL Integration”, asegurarate que la opcion 
         “Enable integration with my default WSL distro”, este habilitada:
 
+
+<<--Utilizando Docker con proyectos de Python-->>
+Para utilizar Docker debemos hacer:
+
+    -Crear un archivo llamado "Dockerfile" y poner:
+        FROM python:3.9
+        
+        WORKDIR /charts     #Nombre de la carpeta
+        COPY requirements.txt /charts/requirements.txt
+
+        RUN pip install --upgrade pip
+        RUN pip install --no-cache-dir --upgrade -r /charts/requirements.txt
+
+        COPY . /charts    #Nombre de la carpeta
+
+        CMD bash -c "while true; do sleep 1; done"
+
+    -Luego de eso debemos crear otro archivo llamado "docker-compose.yml" y poner:
+        services:
+            charts-csv:     #Nombre del venv de Docker
+                build:
+                    context: .
+                    dockerfile: Dockerfile
+                volumes:
+                 - .:/charts
+
+
+
+Luego para activar el ambiente en Docker debemos poner lo siguiente en la terminal:
+    -> docker-compose build
+    -> docker-compose up -d
+    -> docker-compose ps
+
+Para entrar al entorno de Docker debemos poner:
+    -> docker-compose exec charts-csv bash      #'charts-csv' es el del venv de Docker
+
+Para salir del venv de Docker debemos poner: exit
+
+<<---Dockerizando un WebServer--->>
+Para hacerle un venv al WebServer debemos seguir los pasos anteriormente mencionados y modificar
+algunas lineas de codigo para ejecutar el servidor Web:
+
+    -En el archivo 'Dockerfile' lo debemos modificar a:
+        FROM python:3.10
+
+        WORKDIR /webserver
+        COPY requirements.txt /webserver/requirements.txt
+
+        RUN pip install --upgrade pip
+        RUN pip install --no-cache-dir --upgrade -r /webserver/requirements.txt
+
+        COPY . /webserver
+
+        CMD ['uvicorn', 'main:app', '--host', '0.0.0.0', '--port', '80']
+
+    -En el archivo 'docker-compose.yml' debemos modificar:
+        services:
+            web-server:
+                build:
+                    context: .
+                    dockerfile: Dockerfile
+                volumes:
+                    - .:/charts
+                ports:
+                    - '80:80'

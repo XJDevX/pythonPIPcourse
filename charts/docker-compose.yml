@@ -1,0 +1,7 @@
+services:
+  charts-csv:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/charts
